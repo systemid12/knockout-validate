@@ -1,0 +1,64 @@
+<html>
+
+<head>
+	<style>
+		input{ outline: 0;}
+
+	</style>
+</head>
+
+<body>
+	<p data-bind="text: valueText"></p>
+	<input type="text" placeholder="Enter value to validate." data-bind="	value: valueText,
+																			valueUpdate: 'input',
+																			validateRange: {
+																				messageID: 'errorMessage',
+																				type:'text',
+																				minRange: 5,
+																				maxRange: 6
+																			}"/>
+	<div id="errorMessage">
+		Invalid Input
+	</div>
+
+	<input type="text" placeholder="Enter value to validate." data-bind="	value: valueText,
+																			valueUpdate: 'input',
+																			validateRegex: {
+																				messageID: 'regexError',
+																				regex: 'hello'
+																			}"/>
+	<div id="regexError">
+		Invalid regex evaluation
+	</div>
+
+	<input type="text" placeholder="Enter value to validate." data-bind="	value: valueText,
+																			valueUpdate: 'input',
+																			validateRegex: {
+																				messageID: 'regexArrayError',
+																				regex: [
+																					'regex1',
+																					'regex2',
+																					'regex3'
+																				]
+																			}"/>
+	<div id="regexArrayError">
+		Invalid regex array evaluation
+	</div>
+
+	<script type="text/javascript" src="js/ko.min.js"></script>
+	<script type="text/javascript" src="ko-validate.js"></script>
+	
+	<script type="text/javascript">
+		var VM = function(){
+
+			var self = this;
+
+			self.valueText = ko.observable('12345');
+
+		}
+
+		ko.applyBindings(new VM());
+	</script>
+</body>
+
+</html>
