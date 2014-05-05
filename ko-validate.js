@@ -236,6 +236,8 @@ ko.bindingHandlers.validateRange = {
 
     	msg.style.display = isValid? 'none': 'block';   
     	element.style.borderColor = isValid? 'green': 'red';
+
+    	return isValid;
 	},
 
 	init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -262,13 +264,12 @@ ko.bindingHandlers.validateRange = {
 
 ko.bindingHandlers.validateRegex = {
 	validate: function(element, valueAccessor, allBindings, viewModel, bindingContext){
-
+		var utils = Validate.Utils;
         var bindValue = valueAccessor();
-        if (typeof bindValue === 'string'){
-        	//console.log(bindValue + ' is a string.');
+        
+        if (utils.isArray(bindValue)){
         }
         else{
-        	//console.log(bindValue + ' is an array.');
         }
 	},
 
@@ -292,4 +293,8 @@ ko.bindingHandlers.validateRegex = {
 			ko.bindingHandlers.validateRegex.validate(element, valueAccessor, allBindings, viewModel, bindingContext);
 		}
     }
+}
+
+ko.bindingHandlers.validateEquals = {
+	
 }
